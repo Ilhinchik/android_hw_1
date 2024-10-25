@@ -25,12 +25,12 @@ class MyAdapter(): RecyclerView.Adapter<MyViewHolder>() {
     fun setItems(list: List<Int>) {
         items.clear()
         items.addAll(list)
-        notifyDataSetChanged()
+        notifyItemRangeInserted(0, list.size)
     }
 
     fun addItems(item: Int) {
         items.add(item)
-        notifyDataSetChanged()
+        notifyItemInserted(items.size - 1)
     }
 
     fun getItems(): List<Int> = items

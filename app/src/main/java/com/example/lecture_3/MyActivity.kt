@@ -1,15 +1,15 @@
 package com.example.lecture_3
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MyActivity: AppCompatActivity() {
 
-    lateinit var recyclerView: RecyclerView
-    lateinit var fab: FloatingActionButton
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var fab: FloatingActionButton
 
     private val adapter = MyAdapter()
 
@@ -19,6 +19,13 @@ class MyActivity: AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler_view)
         fab = findViewById(R.id.fab)
 
+        val spanCount = if (resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE) {
+            4
+        } else {
+            3
+        }
+
+        recyclerView.layoutManager = GridLayoutManager(this, spanCount)
         recyclerView.adapter = adapter
 
         fab.setOnClickListener {
